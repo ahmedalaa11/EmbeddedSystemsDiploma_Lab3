@@ -17,13 +17,14 @@ typedef union{
 volatile R_ODR_t* R_ODR = (volatile R_ODR_t*)(GPIOA_BASE + 0x0C);
 
 int main(void){
+    int i=0;
     RCC_APB2ENR |= 1<<2;
     GPIOA_CRH &= 0xFF0FFFFF;
     GPIOA_CRH |= 0x00200000;
     while(1){
         R_ODR->Pin.p13=1;
-        for(int i=0;i<20000;i++);
+        for(i=0;i<20000;i++);
         R_ODR->Pin.p13=0;
-        for(int i=0;i<20000;i++);
+        for(i=0;i<20000;i++);
     }
 }
